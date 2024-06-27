@@ -37,14 +37,14 @@ class App extends StatelessWidget {
         builder: (context, snapshot) {
           //this if will get executed for the fraction of sec took to load firebase properly
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Splashscreen();
+            return const Splashscreen();
           }
           //if snapshod has data like if we have token, we are loged in, then chat screen will be displayed
           if (snapshot.hasData) {
-            return ChatScreen();
+            return const ChatScreen();
           }
           //if we dont have data then authscreen will be displayed
-          return AuthScreen();
+          return const AuthScreen();
         },
       ),
     );

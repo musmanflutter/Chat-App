@@ -24,26 +24,26 @@ class ChatMessages extends StatelessWidget {
           .snapshots(),
       builder: (context, chatSnapshot) {
         if (chatSnapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }
         //!chatSnapshot.hasData this checks if we dont have data
         //chatSnapshot.data!.docs.isEmpty this checks if we have data but its (docs) an empty list
         if (!chatSnapshot.hasData || chatSnapshot.data!.docs.isEmpty) {
-          return Center(
+          return const Center(
             child: Text('No Messages Found'),
           );
         }
         if (chatSnapshot.hasError) {
-          return Center(
+          return const Center(
             child: Text('Something went Wrong'),
           );
         }
         final loadedMessages = chatSnapshot.data!.docs;
         //if we passed both above checks, that means we have data, so we showed a list view
         return ListView.builder(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             bottom: 40,
             left: 13,
             right: 13,

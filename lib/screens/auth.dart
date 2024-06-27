@@ -44,7 +44,7 @@ class _AuthScreenState extends State<AuthScreen> {
         _isAuthenticating = true;
       });
       if (_isLogin) {
-        final userCredentials = await _fireBase.signInWithEmailAndPassword(
+        await _fireBase.signInWithEmailAndPassword(
             email: _enteredEmail, password: _enteredPassword);
       }
       //this else will be executed if we are not in login mode, means we are signing up
@@ -96,6 +96,7 @@ class _AuthScreenState extends State<AuthScreen> {
       //we got email-already-in-use auto by createuser.. method, this is an exception, an error
       //that will be thrown auto by that method if same email is in use
       if (error.code == 'email-already-in-use') {}
+      if (!mounted) return;
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -129,7 +130,7 @@ class _AuthScreenState extends State<AuthScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     top: 30,
                     bottom: 20,
                     left: 20,
@@ -139,10 +140,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   child: Image.asset('assets/images/chat.png'),
                 ),
                 Card(
-                  margin: EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(20),
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       child: Form(
                         key: _form,
                         child: Column(
@@ -160,7 +161,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             //instead we are signing up
                             if (!_isLogin)
                               TextFormField(
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                   labelText: 'Username',
                                 ),
                                 enableSuggestions: false,
@@ -178,7 +179,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               ),
                             TextFormField(
                               decoration:
-                                  InputDecoration(labelText: 'Email Adress'),
+                                  const InputDecoration(labelText: 'Email Adress'),
                               keyboardType: TextInputType.emailAddress,
                               //this will stop the keyboard auto correvting the words
                               autocorrect: false,
@@ -200,7 +201,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             ),
                             TextFormField(
                               decoration:
-                                  InputDecoration(labelText: 'Password'),
+                                  const InputDecoration(labelText: 'Password'),
                               //this will hide the password while being typed.
                               obscureText: true,
                               validator: (value) {
@@ -213,11 +214,11 @@ class _AuthScreenState extends State<AuthScreen> {
                                 _enteredPassword = newValue!;
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 12,
                             ),
                             //if data is not loaded, its loding then show a spinner
-                            if (_isAuthenticating) CircularProgressIndicator(),
+                            if (_isAuthenticating) const CircularProgressIndicator(),
                             //while image is being uploaded, buttons wont show
                             //they will only show if we have uploaded, we have finished loading data
                             if (!_isAuthenticating)

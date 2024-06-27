@@ -3,7 +3,6 @@ import 'package:chat_app/widgets/new_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -18,7 +17,7 @@ class _ChatScreenState extends State<ChatScreen> {
     //requestPermission: Prompts the user for notification permissions.
     await fcm.requestPermission();
     //getToken return a token for this device
-    final token = await fcm.getToken();
+    await fcm.getToken();
     //this allows to send notifdication to all subscriber at once using ti=opic in firebase
     fcm.subscribeToTopic('chat');
   }
@@ -34,7 +33,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Chat'),
+        title: const Text('Flutter Chat'),
         actions: [
           IconButton(
             onPressed: () {
@@ -42,11 +41,11 @@ class _ChatScreenState extends State<ChatScreen> {
               //signout will erase token
               FirebaseAuth.instance.signOut();
             },
-            icon: Icon(Icons.exit_to_app),
+            icon: const Icon(Icons.exit_to_app),
           ),
         ],
       ),
-      body: Column(
+      body: const Column(
         children: [
           Expanded(
             child: ChatMessages(),

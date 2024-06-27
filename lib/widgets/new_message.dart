@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class NewMessage extends StatefulWidget {
@@ -55,7 +54,7 @@ class _NewMessageState extends State<NewMessage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 15, right: 1, bottom: 14),
+      padding: const EdgeInsets.only(left: 15, right: 1, bottom: 14),
       child: Row(
         children: [
           Expanded(
@@ -65,13 +64,13 @@ class _NewMessageState extends State<NewMessage> {
               textCapitalization: TextCapitalization.sentences,
               autocorrect: true,
               enableSuggestions: true,
-              decoration: InputDecoration(labelText: 'Send a message...'),
+              decoration: const InputDecoration(labelText: 'Send a message...'),
             ),
           ),
           IconButton(
             color: Theme.of(context).colorScheme.primary,
             onPressed: _submitMessage,
-            icon: Icon(Icons.send),
+            icon: const Icon(Icons.send),
           )
         ],
       ),
