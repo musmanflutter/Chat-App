@@ -22,6 +22,7 @@ migrate_working_dir/
 #.vscode/
 
 # Sensitive files
+lib/firebase_options.dart
 key.properties
 .env
 google-services.json
